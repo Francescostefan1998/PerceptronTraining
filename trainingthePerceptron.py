@@ -41,11 +41,11 @@ X_train_std = sc.transform(X_train)
 # it is importand when I scaled the test data to use the mean and standard deviation of the training data
 X_test_std = sc.transform(X_test)
 
-print(X_train)
+# print(X_train)
 print('--------------------------------')
-print(X_train_std)
+# print(X_train_std)
 print('----------------------------------------------------')
-print(X_test_std)
+# print(X_test_std)
 
 from sklearn.linear_model import Perceptron
 ppn = Perceptron(eta0=0.1, random_state=1)
@@ -136,17 +136,25 @@ def loss_1(z):
 def loss_0(z):
     return - np.log(1-sigmoid(z))
 
-z = np.arrange(-10, 10, 0.1)
+z = np.arange(-10, 10, 0.1)
 sigma_z = sigmoid(z)
 
 c1 = [loss_1(x) for x in z]
 plt.plot(sigma_z, c1, label='L(w, b) if y = 1')
 c0 = [loss_0(x) for x in z]
 plt.plot(sigma_z, c0, linestyle = '--', label = 'L(w,b) if y = 0')
-plt.ylim('.', 5.1)
+plt.ylim(0.0, 5.1)
 plt.xlim([0, 1])
 plt.xlabel('$\sigma(z)$')
 plt.ylabel('L(w, b)')
 plt.legend(loc='best')
 plt.tight_layout()
 plt.show()
+
+
+# import math
+
+
+# other way of defining the sigmoid function
+# def sigmoid(z):
+#    return 1 / (1 + math.exp(-z))   takes an input z, applies the exponential function 
