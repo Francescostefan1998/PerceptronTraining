@@ -132,11 +132,11 @@ def sigmoid(z):
 # plt.show()
 
 def loss_1(z):
-    print(f'loss_1 for z = {z} result: { 1 / (1 + math.exp(-z))}')
+    print(f'loss_1 for z = {z} result of the sigmoid : { 1 / (1 + math.exp(-z))} result of the logsigmoid : { np.log(1 / (1 + math.exp(-z)))}')
     return - np.log(sigmoid(z))
 
 def loss_0(z):
-    print(f'loss_0 for z = {z} result: { 1 -(1 / (1 + math.exp(-z)))} ')
+    print(f'loss_0 for z = {z} result of the sigmoid : { 1 -(1 / (1 + math.exp(-z)))} result of the logsigmoid : {np.log( 1 -(1 / (1 + math.exp(-z))))} ')
     return - np.log(1-sigmoid(z))
 
 z = np.arange(-10, 10, 2.5)
@@ -144,10 +144,12 @@ sigma_z = sigmoid(z)
 print(sigma_z)
 
 c1 = [loss_1(x) for x in z]
+print(c1)
 plt.plot(sigma_z, c1, label='L(w, b) if y = 1')
 c0 = [loss_0(x) for x in z]
+print(c0)
 plt.plot(sigma_z, c0, linestyle = '--', label = 'L(w,b) if y = 0')
-plt.ylim(0.0, 5.1)
+plt.ylim(0.0, 11.1)
 plt.xlim([0, 1])
 plt.xlabel('$\sigma(z)$')
 plt.ylabel('L(w, b)')
