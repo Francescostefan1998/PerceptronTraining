@@ -100,44 +100,48 @@ def plot_decision_regions(X, y, classifier, test_idx=None,
                     linewidth=1, marker='o',
                     s=100, label='Test set')
         
-X_combined_std = np.vstack((X_train_std, X_test_std))
-y_combined = np.hstack((y_train, y_test))
-plot_decision_regions(X=X_combined_std,
-                      y=y_combined,
-                      classifier=ppn,
-                      test_idx=range(105, 150))
-plt.xlabel('Petal length [standardized]')
-plt.ylabel('Petal width [standardized]')
-plt.legend(loc='upper left')
-plt.tight_layout()
-plt.show()
+# X_combined_std = np.vstack((X_train_std, X_test_std))
+# y_combined = np.hstack((y_train, y_test))
+# plot_decision_regions(X=X_combined_std,
+#                       y=y_combined,
+#                       classifier=ppn,
+#                       test_idx=range(105, 150))
+# plt.xlabel('Petal length [standardized]')
+# plt.ylabel('Petal width [standardized]')
+# plt.legend(loc='upper left')
+# plt.tight_layout()
+# plt.show()
 
 import matplotlib.pyplot as plt
 import numpy as np
+import math
 def sigmoid(z):
     return 1.0/(1.0 + np.exp(-z))
 
-z = np.arange(-7, 7, 0.1)
-sigma_z = sigmoid(z)
-plt.plot(z, sigma_z)
-plt.axvline(0.0, color='k')
-plt.ylim(-0.1, 1.1)
-plt.xlabel('z')
-plt.ylabel('$\sigma (z)$')
-plt.yticks([0.0, 0.5, 1.0])
-ax = plt.gca()
-ax.yaxis.grid(True)
-plt.tight_layout()
-plt.show()
+# z = np.arange(-7, 7, 0.1)
+# sigma_z = sigmoid(z)
+# plt.plot(z, sigma_z)
+# plt.axvline(0.0, color='k')
+# plt.ylim(-0.1, 1.1)
+# plt.xlabel('z')
+# plt.ylabel('$\sigma (z)$')
+# plt.yticks([0.0, 0.5, 1.0])
+# ax = plt.gca()
+# ax.yaxis.grid(True)
+# plt.tight_layout()
+# plt.show()
 
 def loss_1(z):
+    print(f'loss_1 for z = {z} result: { 1 / (1 + math.exp(-z))}')
     return - np.log(sigmoid(z))
 
 def loss_0(z):
+    print(f'loss_0 for z = {z} result: { 1 -(1 / (1 + math.exp(-z)))} ')
     return - np.log(1-sigmoid(z))
 
-z = np.arange(-10, 10, 0.1)
+z = np.arange(-10, 10, 2.5)
 sigma_z = sigmoid(z)
+print(sigma_z)
 
 c1 = [loss_1(x) for x in z]
 plt.plot(sigma_z, c1, label='L(w, b) if y = 1')
@@ -158,3 +162,18 @@ plt.show()
 # other way of defining the sigmoid function
 # def sigmoid(z):
 #    return 1 / (1 + math.exp(-z))   takes an input z, applies the exponential function 
+
+# second example 
+# Small set of z values
+# z_values = [-2, 0, 2]
+
+# for z in z_values:
+#     sigma = sigmoid(z)
+#     loss1 = loss_1(z)
+#     loss0 = loss_0(z)
+    
+#     print(f"z = {z}:")
+#     print(f"  Sigmoid(z) = {sigma}")
+#     print(f"  Loss if y=1: {loss1}")
+#     print(f"  Loss if y=0: {loss0}")
+#     print()
